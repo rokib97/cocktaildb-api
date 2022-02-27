@@ -18,13 +18,23 @@ const loadData = () => {
     const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => displayData(data.drinks));
+      .then((data) => {
+        if (data.drinks == null) {
+          errorMsg.innerHTML = `
+          <marquee width="50%" direction="left" height="200px">
+          Please input valid something....
+          </marquee>
+          `;
+        } else {
+          displayData(data.drinks);
+        }
+      });
     inputField.value = "";
   }
 };
 
 const displayData = (drinks) => {
-  console.log(drinks);
+  // console.log(drinks);
   const cardContainerDiv = document.getElementById("card-container");
   document.getElementById("card-container").innerHTML = "";
   drinks.forEach((drink) => {
