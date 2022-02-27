@@ -12,6 +12,8 @@ const loadData = () => {
     Please input valid something....
     </marquee>
     `;
+    document.getElementById("spinner").style.display = "none";
+
     inputField.value = "";
     document.getElementById("card-container").innerHTML = "";
   } else {
@@ -26,6 +28,8 @@ const loadData = () => {
           Please input valid something....
           </marquee>
           `;
+          document.getElementById("spinner").style.display = "none";
+
           document.getElementById("card-container").innerHTML = "";
         } else {
           displayData(data.drinks);
@@ -61,8 +65,8 @@ const displayData = (drinks) => {
 };
 
 const loadDetails = (id) => {
-  document.getElementById("spinner").style.display = "block";
   // console.log(id);
+  document.getElementById("spinner").style.display = "block";
   const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
   fetch(url)
     .then((res) => res.json())
